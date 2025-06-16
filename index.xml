@@ -2,38 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Josep Oriol Carné - Developer &amp; Algorithmic Trader</title>
-    <link>https://joseporiolcarne.com/</link>
+    <link>https://joseporiolcarne.github.io/</link>
     <description>Recent content on Josep Oriol Carné - Developer &amp; Algorithmic Trader</description>
     <generator>Hugo -- 0.147.8</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 25 Apr 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://joseporiolcarne.com/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://joseporiolcarne.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Secure Network Architecture for Home-Based Trading &amp; Server Ops</title>
-      <link>https://joseporiolcarne.com/posts/securing-home-network/</link>
+      <link>https://joseporiolcarne.github.io/posts/securing-home-network/</link>
       <pubDate>Fri, 25 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>https://joseporiolcarne.com/posts/securing-home-network/</guid>
+      <guid>https://joseporiolcarne.github.io/posts/securing-home-network/</guid>
       <description>A pragmatic guide to designing and securing a home network for high-uptime trading systems and personal servers, covering segmentation, router hardening, and server security principles.</description>
     </item>
     <item>
       <title>Selecting an Open-Source DB for Financial Time Series</title>
-      <link>https://joseporiolcarne.com/posts/opensource-timeframe-database/</link>
+      <link>https://joseporiolcarne.github.io/posts/opensource-timeframe-database/</link>
       <pubDate>Sun, 06 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>https://joseporiolcarne.com/posts/opensource-timeframe-database/</guid>
+      <guid>https://joseporiolcarne.github.io/posts/opensource-timeframe-database/</guid>
       <description>A personal analysis of QuestDB, TimescaleDB, InfluxDB, CrateDB, and ClickHouse for demanding financial data workloads and AI integration. Includes my preferred choice.</description>
     </item>
     <item>
       <title>Debugging the Human OS: A Comparative Analysis of Journaling Protocols</title>
-      <link>https://joseporiolcarne.com/posts/journailing-comparison/</link>
+      <link>https://joseporiolcarne.github.io/posts/journailing-comparison/</link>
       <pubDate>Tue, 25 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://joseporiolcarne.com/posts/journailing-comparison/</guid>
+      <guid>https://joseporiolcarne.github.io/posts/journailing-comparison/</guid>
       <description>Analyzing various journaling techniques as protocols for personal system optimization, productivity boosts, and cognitive debugging.</description>
     </item>
     <item>
       <title></title>
-      <link>https://joseporiolcarne.com/about/</link>
+      <link>https://joseporiolcarne.github.io/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://joseporiolcarne.com/about/</guid>
+      <guid>https://joseporiolcarne.github.io/about/</guid>
       <description>&lt;p&gt;I&amp;rsquo;m a developer and team lead, currently guiding Digital Transformations projects. I&amp;rsquo;m also an algorithmic trader, a field where I apply my core obsession: building autonomous systems that learn and improve. My core principles: open-endedness, randomness, RL and survival of the fittest.&lt;/p&gt;
 &lt;p&gt;Code that evolves, profit that grows.&lt;/p&gt;</description>
     </item>

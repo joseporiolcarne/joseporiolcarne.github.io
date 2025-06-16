@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Influxdb on Josep Oriol Carné - Developer &amp; Algorithmic Trader</title>
-    <link>https://joseporiolcarne.com/tags/influxdb/</link>
+    <link>https://joseporiolcarne.github.io/tags/influxdb/</link>
     <description>Recent content in Influxdb on Josep Oriol Carné - Developer &amp; Algorithmic Trader</description>
     <generator>Hugo -- 0.147.8</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 06 Apr 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://joseporiolcarne.com/tags/influxdb/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://joseporiolcarne.github.io/tags/influxdb/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Selecting an Open-Source DB for Financial Time Series</title>
-      <link>https://joseporiolcarne.com/posts/opensource-timeframe-database/</link>
+      <link>https://joseporiolcarne.github.io/posts/opensource-timeframe-database/</link>
       <pubDate>Sun, 06 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>https://joseporiolcarne.com/posts/opensource-timeframe-database/</guid>
+      <guid>https://joseporiolcarne.github.io/posts/opensource-timeframe-database/</guid>
       <description>A personal analysis of QuestDB, TimescaleDB, InfluxDB, CrateDB, and ClickHouse for demanding financial data workloads and AI integration. Includes my preferred choice.</description>
     </item>
   </channel>

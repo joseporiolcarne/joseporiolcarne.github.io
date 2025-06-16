@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Raspberry-Pi on Josep Oriol Carné - Developer &amp; Algorithmic Trader</title>
-    <link>https://joseporiolcarne.com/tags/raspberry-pi/</link>
+    <link>https://joseporiolcarne.github.io/tags/raspberry-pi/</link>
     <description>Recent content in Raspberry-Pi on Josep Oriol Carné - Developer &amp; Algorithmic Trader</description>
     <generator>Hugo -- 0.147.8</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 25 Apr 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://joseporiolcarne.com/tags/raspberry-pi/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://joseporiolcarne.github.io/tags/raspberry-pi/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Secure Network Architecture for Home-Based Trading &amp; Server Ops</title>
-      <link>https://joseporiolcarne.com/posts/securing-home-network/</link>
+      <link>https://joseporiolcarne.github.io/posts/securing-home-network/</link>
       <pubDate>Fri, 25 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>https://joseporiolcarne.com/posts/securing-home-network/</guid>
+      <guid>https://joseporiolcarne.github.io/posts/securing-home-network/</guid>
       <description>A pragmatic guide to designing and securing a home network for high-uptime trading systems and personal servers, covering segmentation, router hardening, and server security principles.</description>
     </item>
   </channel>
