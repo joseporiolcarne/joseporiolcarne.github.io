@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Journaling on Josep Oriol Carné - Developer &amp; Algorithmic Trader</title>
+    <link>https://joseporiolcarne.com/tags/journaling/</link>
+    <description>Recent content in Journaling on Josep Oriol Carné - Developer &amp; Algorithmic Trader</description>
+    <generator>Hugo -- 0.147.8</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 25 Mar 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://joseporiolcarne.com/tags/journaling/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Debugging the Human OS: A Comparative Analysis of Journaling Protocols</title>
+      <link>https://joseporiolcarne.com/posts/journailing-comparison/</link>
+      <pubDate>Tue, 25 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://joseporiolcarne.com/posts/journailing-comparison/</guid>
+      <description>Analyzing various journaling techniques as protocols for personal system optimization, productivity boosts, and cognitive debugging.</description>
+    </item>
+  </channel>
+</rss>

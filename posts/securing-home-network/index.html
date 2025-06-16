@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Secure Network Architecture for Home-Based Trading &amp; Server Ops | Josep Oriol Carné - Developer &amp; Algorithmic Trader</title>
+<meta name="keywords" content="network-security, homelab, trading, servers, cybersecurity, networking, router, hardening, ubuntu, dell, ibm, raspberry-pi">
+<meta name="description" content="A pragmatic guide to designing and securing a home network for high-uptime trading systems and personal servers, covering segmentation, router hardening, and server security principles.">
+<meta name="author" content="Josep Oriol Carné">
+<link rel="canonical" href="https://joseporiolcarne.com/posts/securing-home-network/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.93f625d739f1d6a5c6f20c146bc6a8d26b233492b34b2220c54b12fd46a04ded.css" integrity="sha256-k/Yl1znx1qXG8gwUa8ao0msjNJKzSyIgxUsS/UagTe0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://joseporiolcarne.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://joseporiolcarne.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://joseporiolcarne.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://joseporiolcarne.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://joseporiolcarne.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://joseporiolcarne.com/posts/securing-home-network/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://joseporiolcarne.com/posts/securing-home-network/">
+  <meta property="og:site_name" content="Josep Oriol Carné - Developer & Algorithmic Trader">
+  <meta property="og:title" content="Secure Network Architecture for Home-Based Trading & Server Ops">
+  <meta property="og:description" content="A pragmatic guide to designing and securing a home network for high-uptime trading systems and personal servers, covering segmentation, router hardening, and server security principles.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-04-25T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-04-25T00:00:00+00:00">
+    <meta property="article:tag" content="Network-Security">
+    <meta property="article:tag" content="Homelab">
+    <meta property="article:tag" content="Trading">
+    <meta property="article:tag" content="Servers">
+    <meta property="article:tag" content="Cybersecurity">
+    <meta property="article:tag" content="Networking">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Secure Network Architecture for Home-Based Trading &amp; Server Ops">
+<meta name="twitter:description" content="A pragmatic guide to designing and securing a home network for high-uptime trading systems and personal servers, covering segmentation, router hardening, and server security principles.">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://joseporiolcarne.com/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Secure Network Architecture for Home-Based Trading \u0026 Server Ops",
+      "item": "https://joseporiolcarne.com/posts/securing-home-network/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Secure Network Architecture for Home-Based Trading \u0026 Server Ops",
+  "name": "Secure Network Architecture for Home-Based Trading \u0026 Server Ops",
+  "description": "A pragmatic guide to designing and securing a home network for high-uptime trading systems and personal servers, covering segmentation, router hardening, and server security principles.",
+  "keywords": [
+    "network-security", "homelab", "trading", "servers", "cybersecurity", "networking", "router", "hardening", "ubuntu", "dell", "ibm", "raspberry-pi"
+  ],
+  "articleBody": "Introduction: Shielding Critical Infrastructure Running 24/7 operations from a home base – whether it’s autonomous trading algorithms or personal management applications – demands more than consumer-grade network hygiene. It requires architecting for resilience and security, treating your home network less like a casual access point and more like a personal data center. Every component, from the router gateway to the server OS, is part of the attack surface and a potential failure point.\nThis isn’t about theoretical perfection; it’s about pragmatic defense-in-depth. We’ll cover segmenting your network to contain threats, hardening the perimeter (your router), and securing the endpoints (your servers – be they Raspberry Pis, standard PCs running Ubuntu, or even renterprise gear like Dell or IBM servers you might have… acquired). The goal is maximizing uptime and integrity while minimizing exposure. Simplicity is a virtue, but not at the cost of security.\nNetwork Architecture: Segmentation is Non-Negotiable A flat network where your trading rig, your blog server, your smart lightbulb, and your personal laptop all share the same broadcast domain is an invitation for disaster. One compromised IoT device could become a pivot point to critical systems. Segmentation limits the blast radius.\nIsolate Device Classes: Use your router’s capabilities (VLANs if available, Guest Wi-Fi networks otherwise) to create distinct zones: Core LAN: Trusted personal devices (workstations, phones). High trust, but still firewalled. Server Zone: Your critical infrastructure (trading bots on dedicated PCs, blog server on a Pi). This zone needs internet access but should ideally be isolated from the Core LAN. A router’s “Guest Network” feature, even if Wi-Fi only, can often provide this basic isolation (medium.com). If your router allows wired port isolation or guest VLANs, use that. The principle: the public-facing blog server must not have network paths to your personal workstation or trading system’s command/control interfaces. Untrusted Zone (Optional but Recommended): IoT devices, actual guest devices. Internet access only, strictly isolated from Core LAN and Server Zone (medium.com). Assume these are compromised or running leaky firmware. Static Internal IPs: Assign static IP addresses (via DHCP reservation or manual config) to servers and critical infrastructure (e.g., 192.168.1.10 for blog Pi, 192.168.1.11 for trading PC). This simplifies firewall rule management and port forwarding – predictable addresses are essential. Host-Based Firewalls: Don’t rely solely on network segmentation. Implement firewalls on each server (covered later). Your trading machine likely needs zero inbound connections from the LAN, except maybe SSH from your specific admin workstation. Block everything else at the OS level. Advanced Option - True VLANs: If your hardware/firmware (stock or custom like OpenWrt/DD-WRT/Asuswrt-Merlin) supports proper VLANs (Virtual Local Area Networks) with distinct subnets (e.g., 192.168.1.x for Core, 192.168.10.x for Servers, 192.168.20.x for Untrusted), implement them. This allows fine-grained firewall rules between segments (medium.com), offering superior isolation compared to basic guest networks. More complex, higher control. Evaluate the trade-off based on your gear and expertise. Router Hardening: Securing the Network Gateway Your router is the gatekeeper. A poorly configured router undermines all internal security efforts.\nFirmware Integrity: Keep the router firmware updated. Check the vendor site/admin UI regularly. Unpatched firmware is riddled with known vulnerabilities. If your router hasn’t seen an update in years, it’s likely EOL (End-of-Life) – replace it (routersecurity.org). Running obsolete edge devices is negligent. Admin Access Control: Change Default Credentials: Immediately replace default admin username/password with a strong, unique one (routersecurity.org). This is step zero. Disable Remote WAN Admin: Turn off administration from the internet side. You should access the admin interface only from the Core LAN, ideally after connecting via your secure VPN if you’re remote. Wireless Security (WPA/WPA3): Use WPA3 if supported, otherwise WPA2-AES. No WEP, no WPA/WPA2-TKIP . Use a strong, long passphrase (20+ random characters). Change the default SSID (network name) to something non-identifiable. Don’t advertise personal info . Disable WPS (Wi-Fi Protected Setup). It’s notoriously insecure . Disable Unnecessary Services: Turn off UPnP (Universal Plug and Play) . It allows devices to automatically open firewall ports, creating potential backdoors . Manage port forwarding manually. Disable Cloud Management/Telemetry: If the router offers cloud integration, remote analytics, or diagnostics reporting, disable it unless you have an explicit, evaluated need. Reduce data leakage vectors. Firewall \u0026 Port Forwarding Discipline: Default Deny Inbound: Ensure the firewall blocks all unsolicited incoming traffic from the WAN (NAT usually handles this for IPv4, but verify). Minimize Port Forwarding: Only forward ports absolutely necessary for services intended to be public (e.g., port 443/80 for the blog server, your OpenVPN port). Never use the DMZ feature . Each open port increases the attack surface. Target Specific IPs: Point forwards directly to the static internal IPs of the relevant servers. Restrict Source IPs (If Possible): If a service (like VPN) should only be accessed from specific known IPs (e.g., your static office IP, another VPN endpoint), restrict the port forward rule accordingly. Often not feasible for dynamic home IPs. No Direct SSH Exposure: Avoid forwarding port 22 (SSH). Access servers via your internal network after connecting through your VPN. SSH should only listen on internal interfaces or be firewalled to only allow access from trusted internal IPs. Guest Network Isolation: Ensure guest networks are configured for true isolation – no access to the Core LAN or Server Zone . Enable “AP Isolation” or similar settings to prevent devices within the guest network from communicating with each other. IPv6 Firewalling: If using IPv6, verify your router has a functional IPv6 firewall enabled. Many consumer routers default to allowing all inbound IPv6, effectively bypassing NAT protections. If the IPv6 firewall is weak or non-existent, consider disabling IPv6 entirely on the router to eliminate this risk. Logging \u0026 Alerts: Enable router system and firewall logs (denied connections at minimum). If possible, configure alerts for critical events (firmware updates, configuration changes). Review logs periodically – they contain threat intelligence. Optional Firmware Alternatives: For advanced control (robust VLANs, better VPN server/client, IDS/IPS), consider open-source firmware (Asuswrt-Merlin, OpenWrt, DD-WRT) if your hardware is compatible and you’re comfortable with manual configuration and potential troubleshooting. Stick with updated stock firmware if unsure – a well-configured stock setup is better than a misconfigured custom one. Router Hardening Checklist Firmware Updated Default Admin Credentials Changed Remote WAN Admin Disabled WPA2-AES or WPA3 Enabled (Strong Passphrase) SSID Changed (Non-Identifiable) WPS Disabled UPnP Disabled Cloud Features / Telemetry Disabled (If applicable) Firewall Default Deny Inbound Verified Port Forwarding Minimized \u0026 Targeted (No DMZ) SSH Port Not Forwarded Guest Network Isolation Enabled \u0026 Verified IPv6 Firewall Enabled (or IPv6 Disabled) Logging Enabled Server Hardening: Securing the Endpoints Network security is layered. Even with a hardened router and segmented network, the servers themselves must be secured. Principles apply whether it’s a Raspberry Pi, an Ubuntu PC, or enterprise gear (Dell PowerEdge, IBM System x/Power Series).\nGeneral OS \u0026 Application Hardening (Applies to All) Minimal Installation: Install only necessary packages. Smaller attack surface. Regular Updates: Keep the OS and all installed software (web server, database, trading platform, blog engine) patched religiously. Automate non-disruptive updates if possible. Host-Based Firewall: Configure ufw (Ubuntu), firewalld (CentOS/Fedora), or equivalent. Default deny inbound, allow only explicitly needed ports/services (e.g., allow port 443 for web server, allow SSH only from trusted internal IPs). Secure SSH: Use key-based authentication, disable password authentication. Disable root login via SSH. Consider changing the default port (security by obscurity, minimal benefit against targeted attacks, but reduces log noise). Crucially: Firewall SSH access to only allow connections from your VPN subnet or specific trusted internal IPs. Intrusion Detection/Prevention: Install fail2ban or similar tools to automatically block IPs exhibiting malicious behavior (e.g., repeated failed SSH logins). Application Security: Configure applications securely (e.g., enforce HTTPS on web server, secure database access, use strong passwords/API keys for trading platform). Enterprise Server Specifics (Dell iDRAC, IBM IMM/XCC, HP iLO) Repurposed enterprise servers bring powerful remote management capabilities – iDRAC (Dell), IMM/XCC (IBM/Lenovo), iLO (HP). These Out-Of-Band (OOB) management interfaces provide deep hardware-level control (power cycling, console access, BIOS config) even if the main OS is down. Compromising the management interface is equivalent to physical access. Treat them with extreme caution:\nNetwork Isolation is Paramount: Connect the dedicated management port to a completely separate, physically isolated management network if feasible. This network should have no internet access or strictly firewalled access. If Separate Network Unfeasible: Place the management interface IP on your most trusted internal segment (e.g., Core LAN, never Server Zone or Untrusted Zone). Aggressively firewall access to this IP – only allow connections from your specific admin workstation IP(s). Never expose these interfaces directly to the internet or less trusted network segments. Secure Configuration: Change Default Credentials Immediately: Default usernames/passwords are public knowledge. Use strong, unique passwords. Network Settings: Assign a static IP. Configure network settings carefully. Encryption: Enable TLS/SSL (HTTPS) for the web interface. Use secure protocols (e.g., SSH instead of Telnet if available). Firmware Updates: Keep the management interface firmware updated. These interfaces have their own OS and vulnerabilities. Updates are critical. Disable Unused Services: Disable any services within the management interface you don’t need (e.g., SNMP, Telnet, VNC if not used). Access Control: Configure user accounts and permissions tightly (less relevant for single-user home setups, but good practice). Logging: Enable and periodically review logs within the management interface itself. Physical Security If you’re running actual server hardware (not just Pis), consider physical security. Is the hardware in a location where unauthorized individuals could access it directly (e.g., connect a keyboard, USB drive)? Less critical in a typical home, but worth considering if the stakes are high.\nConclusion: Vigilance and Adaptation Building a secure home network for critical operations isn’t a one-time setup; it’s an ongoing process. Technology evolves, threats change, vulnerabilities are discovered. Regular updates, log reviews, and periodic configuration audits are essential. Treat your network as a living system that requires continuous monitoring and adaptation. Layer your defenses, minimize your attack surface, and always assume potential compromise.\nEvolve. Excel. Encrypt.\n",
+  "wordCount" : "1644",
+  "inLanguage": "en",
+  "datePublished": "2025-04-25T00:00:00Z",
+  "dateModified": "2025-04-25T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Josep Oriol Carné"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://joseporiolcarne.com/posts/securing-home-network/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Josep Oriol Carné - Developer \u0026 Algorithmic Trader",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://joseporiolcarne.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://joseporiolcarne.com/" accesskey="h" title="Josep Oriol Carné - Developer &amp; Algorithmic Trader (Alt + H)">Josep Oriol Carné - Developer &amp; Algorithmic Trader</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://joseporiolcarne.com/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://joseporiolcarne.com/about" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://joseporiolcarne.com/posts" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Secure Network Architecture for Home-Based Trading &amp; Server Ops
+    </h1>
+    <div class="post-description">
+      A pragmatic guide to designing and securing a home network for high-uptime trading systems and personal servers, covering segmentation, router hardening, and server security principles.
+    </div>
+    <div class="post-meta"><span title='2025-04-25 00:00:00 +0000 UTC'>April 25, 2025</span>&nbsp;·&nbsp;8 min&nbsp;·&nbsp;Josep Oriol Carné
+
+</div>
+  </header> <div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#introduction-shielding-critical-infrastructure" aria-label="Introduction: Shielding Critical Infrastructure">Introduction: Shielding Critical Infrastructure</a></li>
+                <li>
+                    <a href="#network-architecture-segmentation-is-non-negotiable" aria-label="Network Architecture: Segmentation is Non-Negotiable">Network Architecture: Segmentation is Non-Negotiable</a></li>
+                <li>
+                    <a href="#router-hardening-securing-the-network-gateway" aria-label="Router Hardening: Securing the Network Gateway">Router Hardening: Securing the Network Gateway</a><ul>
+                        
+                <li>
+                    <a href="#router-hardening-checklist" aria-label="Router Hardening Checklist">Router Hardening Checklist</a></li></ul>
+                </li>
+                <li>
+                    <a href="#server-hardening-securing-the-endpoints" aria-label="Server Hardening: Securing the Endpoints">Server Hardening: Securing the Endpoints</a><ul>
+                        
+                <li>
+                    <a href="#general-os--application-hardening-applies-to-all" aria-label="General OS &amp; Application Hardening (Applies to All)">General OS &amp; Application Hardening (Applies to All)</a></li>
+                <li>
+                    <a href="#enterprise-server-specifics-dell-idrac-ibm-immxcc-hp-ilo" aria-label="Enterprise Server Specifics (Dell iDRAC, IBM IMM/XCC, HP iLO)">Enterprise Server Specifics (Dell iDRAC, IBM IMM/XCC, HP iLO)</a></li>
+                <li>
+                    <a href="#physical-security" aria-label="Physical Security">Physical Security</a></li></ul>
+                </li>
+                <li>
+                    <a href="#conclusion-vigilance-and-adaptation" aria-label="Conclusion: Vigilance and Adaptation">Conclusion: Vigilance and Adaptation</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h2 id="introduction-shielding-critical-infrastructure">Introduction: Shielding Critical Infrastructure<a hidden class="anchor" aria-hidden="true" href="#introduction-shielding-critical-infrastructure">#</a></h2>
+<p>Running 24/7 operations from a home base – whether it&rsquo;s autonomous trading algorithms or personal management applications – demands more than consumer-grade network hygiene. It requires architecting for resilience and security, treating your home network less like a casual access point and more like a personal data center. Every component, from the router gateway to the server OS, is part of the attack surface and a potential failure point.</p>
+<p>This isn&rsquo;t about theoretical perfection; it&rsquo;s about pragmatic defense-in-depth. We&rsquo;ll cover segmenting your network to contain threats, hardening the perimeter (your router), and securing the endpoints (your servers – be they Raspberry Pis, standard PCs running Ubuntu, or even renterprise gear like Dell or IBM servers you might have&hellip; acquired). The goal is maximizing uptime and integrity while minimizing exposure. Simplicity is a virtue, but not at the cost of security.</p>
+<hr>
+<h2 id="network-architecture-segmentation-is-non-negotiable">Network Architecture: Segmentation is Non-Negotiable<a hidden class="anchor" aria-hidden="true" href="#network-architecture-segmentation-is-non-negotiable">#</a></h2>
+<p>A flat network where your trading rig, your blog server, your smart lightbulb, and your personal laptop all share the same broadcast domain is an invitation for disaster. One compromised IoT device could become a pivot point to critical systems. Segmentation limits the blast radius.</p>
+<ul>
+<li><strong>Isolate Device Classes:</strong> Use your router&rsquo;s capabilities (VLANs if available, Guest Wi-Fi networks otherwise) to create distinct zones:
+<ul>
+<li><strong>Core LAN:</strong> Trusted personal devices (workstations, phones). High trust, but still firewalled.</li>
+<li><strong>Server Zone:</strong> Your critical infrastructure (trading bots on dedicated PCs, blog server on a Pi). This zone needs internet access but should ideally be isolated from the Core LAN. A router&rsquo;s &ldquo;Guest Network&rdquo; feature, even if Wi-Fi only, can often provide this basic isolation (<code>medium.com</code>). If your router allows wired port isolation or guest VLANs, use that. The principle: the public-facing blog server <em>must not</em> have network paths to your personal workstation or trading system&rsquo;s command/control interfaces.</li>
+<li><strong>Untrusted Zone (Optional but Recommended):</strong> IoT devices, actual guest devices. Internet access only, strictly isolated from Core LAN and Server Zone (<code>medium.com</code>). Assume these are compromised or running leaky firmware.</li>
+</ul>
+</li>
+<li><strong>Static Internal IPs:</strong> Assign static IP addresses (via DHCP reservation or manual config) to servers and critical infrastructure (e.g., <code>192.168.1.10</code> for blog Pi, <code>192.168.1.11</code> for trading PC). This simplifies firewall rule management and port forwarding – predictable addresses are essential.</li>
+<li><strong>Host-Based Firewalls:</strong> Don&rsquo;t rely solely on network segmentation. Implement firewalls <em>on</em> each server (covered later). Your trading machine likely needs zero inbound connections from the LAN, except maybe SSH from your specific admin workstation. Block everything else at the OS level.</li>
+<li><strong>Advanced Option - True VLANs:</strong> If your hardware/firmware (stock or custom like OpenWrt/DD-WRT/Asuswrt-Merlin) supports proper VLANs (Virtual Local Area Networks) with distinct subnets (e.g., 192.168.1.x for Core, 192.168.10.x for Servers, 192.168.20.x for Untrusted), implement them. This allows fine-grained firewall rules <em>between</em> segments (<code>medium.com</code>), offering superior isolation compared to basic guest networks. More complex, higher control. Evaluate the trade-off based on your gear and expertise.</li>
+</ul>
+<hr>
+<h2 id="router-hardening-securing-the-network-gateway">Router Hardening: Securing the Network Gateway<a hidden class="anchor" aria-hidden="true" href="#router-hardening-securing-the-network-gateway">#</a></h2>
+<p>Your router is the gatekeeper. A poorly configured router undermines all internal security efforts.</p>
+<ul>
+<li><strong>Firmware Integrity:</strong> Keep the router firmware <strong>updated</strong>. Check the vendor site/admin UI regularly. Unpatched firmware is riddled with known vulnerabilities. If your router hasn&rsquo;t seen an update in years, it&rsquo;s likely EOL (End-of-Life) – replace it (<code>routersecurity.org</code>). Running obsolete edge devices is negligent.</li>
+<li><strong>Admin Access Control:</strong>
+<ul>
+<li><strong>Change Default Credentials:</strong> Immediately replace default admin username/password with a strong, unique one (<code>routersecurity.org</code>). This is step zero.</li>
+<li><strong>Disable Remote WAN Admin:</strong> Turn off administration from the internet side. You should access the admin interface only from the Core LAN, ideally after connecting via your secure VPN if you&rsquo;re remote.</li>
+</ul>
+</li>
+<li><strong>Wireless Security (WPA/WPA3):</strong>
+<ul>
+<li>Use <strong>WPA3</strong> if supported, otherwise <strong>WPA2-AES</strong>. No WEP, no WPA/WPA2-TKIP .</li>
+<li>Use a <strong>strong, long passphrase</strong> (20+ random characters).</li>
+<li>Change the default SSID (network name) to something non-identifiable. Don&rsquo;t advertise personal info .</li>
+<li><strong>Disable WPS</strong> (Wi-Fi Protected Setup). It&rsquo;s notoriously insecure .</li>
+</ul>
+</li>
+<li><strong>Disable Unnecessary Services:</strong>
+<ul>
+<li><strong>Turn off UPnP</strong> (Universal Plug and Play) . It allows devices to automatically open firewall ports, creating potential backdoors . Manage port forwarding manually.</li>
+<li><strong>Disable Cloud Management/Telemetry:</strong> If the router offers cloud integration, remote analytics, or diagnostics reporting, disable it unless you have an explicit, evaluated need. Reduce data leakage vectors.</li>
+</ul>
+</li>
+<li><strong>Firewall &amp; Port Forwarding Discipline:</strong>
+<ul>
+<li><strong>Default Deny Inbound:</strong> Ensure the firewall blocks all unsolicited incoming traffic from the WAN (NAT usually handles this for IPv4, but verify).</li>
+<li><strong>Minimize Port Forwarding:</strong> Only forward ports absolutely necessary for services intended to be public (e.g., port 443/80 for the blog server, your OpenVPN port). <strong>Never use the DMZ feature</strong> . Each open port increases the attack surface.</li>
+<li><strong>Target Specific IPs:</strong> Point forwards directly to the static internal IPs of the relevant servers.</li>
+<li><strong>Restrict Source IPs (If Possible):</strong> If a service (like VPN) should only be accessed from specific known IPs (e.g., your static office IP, another VPN endpoint), restrict the port forward rule accordingly. Often not feasible for dynamic home IPs.</li>
+<li><strong>No Direct SSH Exposure:</strong> Avoid forwarding port 22 (SSH). Access servers via your internal network <em>after</em> connecting through your VPN. SSH should only listen on internal interfaces or be firewalled to only allow access from trusted internal IPs.</li>
+</ul>
+</li>
+<li><strong>Guest Network Isolation:</strong> Ensure guest networks are configured for true isolation – no access to the Core LAN or Server Zone . Enable &ldquo;AP Isolation&rdquo; or similar settings to prevent devices <em>within</em> the guest network from communicating with each other.</li>
+<li><strong>IPv6 Firewalling:</strong> If using IPv6, verify your router has a functional <strong>IPv6 firewall enabled</strong>. Many consumer routers default to allowing all inbound IPv6, effectively bypassing NAT protections. If the IPv6 firewall is weak or non-existent, consider disabling IPv6 entirely on the router to eliminate this risk.</li>
+<li><strong>Logging &amp; Alerts:</strong> Enable router system and firewall logs (denied connections at minimum). If possible, configure alerts for critical events (firmware updates, configuration changes). Review logs periodically – they contain threat intelligence.</li>
+<li><strong>Optional Firmware Alternatives:</strong> For advanced control (robust VLANs, better VPN server/client, IDS/IPS), consider open-source firmware (Asuswrt-Merlin, OpenWrt, DD-WRT) if your hardware is compatible and you&rsquo;re comfortable with manual configuration and potential troubleshooting. Stick with updated stock firmware if unsure – a well-configured stock setup is better than a misconfigured custom one.</li>
+</ul>
+<h3 id="router-hardening-checklist">Router Hardening Checklist<a hidden class="anchor" aria-hidden="true" href="#router-hardening-checklist">#</a></h3>
+<ul>
+<li><input disabled="" type="checkbox"> Firmware Updated</li>
+<li><input disabled="" type="checkbox"> Default Admin Credentials Changed</li>
+<li><input disabled="" type="checkbox"> Remote WAN Admin Disabled</li>
+<li><input disabled="" type="checkbox"> WPA2-AES or WPA3 Enabled (Strong Passphrase)</li>
+<li><input disabled="" type="checkbox"> SSID Changed (Non-Identifiable)</li>
+<li><input disabled="" type="checkbox"> WPS Disabled</li>
+<li><input disabled="" type="checkbox"> UPnP Disabled</li>
+<li><input disabled="" type="checkbox"> Cloud Features / Telemetry Disabled (If applicable)</li>
+<li><input disabled="" type="checkbox"> Firewall Default Deny Inbound Verified</li>
+<li><input disabled="" type="checkbox"> Port Forwarding Minimized &amp; Targeted (No DMZ)</li>
+<li><input disabled="" type="checkbox"> SSH Port Not Forwarded</li>
+<li><input disabled="" type="checkbox"> Guest Network Isolation Enabled &amp; Verified</li>
+<li><input disabled="" type="checkbox"> IPv6 Firewall Enabled (or IPv6 Disabled)</li>
+<li><input disabled="" type="checkbox"> Logging Enabled</li>
+</ul>
+<hr>
+<h2 id="server-hardening-securing-the-endpoints">Server Hardening: Securing the Endpoints<a hidden class="anchor" aria-hidden="true" href="#server-hardening-securing-the-endpoints">#</a></h2>
+<p>Network security is layered. Even with a hardened router and segmented network, the servers themselves must be secured. Principles apply whether it&rsquo;s a Raspberry Pi, an Ubuntu PC, or enterprise gear (Dell PowerEdge, IBM System x/Power Series).</p>
+<h3 id="general-os--application-hardening-applies-to-all">General OS &amp; Application Hardening (Applies to All)<a hidden class="anchor" aria-hidden="true" href="#general-os--application-hardening-applies-to-all">#</a></h3>
+<ul>
+<li><strong>Minimal Installation:</strong> Install only necessary packages. Smaller attack surface.</li>
+<li><strong>Regular Updates:</strong> Keep the OS and all installed software (web server, database, trading platform, blog engine) patched religiously. Automate non-disruptive updates if possible.</li>
+<li><strong>Host-Based Firewall:</strong> Configure <code>ufw</code> (Ubuntu), <code>firewalld</code> (CentOS/Fedora), or equivalent. Default deny inbound, allow only explicitly needed ports/services (e.g., allow port 443 for web server, allow SSH <em>only</em> from trusted internal IPs).</li>
+<li><strong>Secure SSH:</strong>
+<ul>
+<li>Use key-based authentication, disable password authentication.</li>
+<li>Disable root login via SSH.</li>
+<li><em>Consider</em> changing the default port (security by obscurity, minimal benefit against targeted attacks, but reduces log noise).</li>
+<li><strong>Crucially:</strong> Firewall SSH access to only allow connections from your VPN subnet or specific trusted internal IPs.</li>
+</ul>
+</li>
+<li><strong>Intrusion Detection/Prevention:</strong> Install <code>fail2ban</code> or similar tools to automatically block IPs exhibiting malicious behavior (e.g., repeated failed SSH logins).</li>
+<li><strong>Application Security:</strong> Configure applications securely (e.g., enforce HTTPS on web server, secure database access, use strong passwords/API keys for trading platform).</li>
+</ul>
+<h3 id="enterprise-server-specifics-dell-idrac-ibm-immxcc-hp-ilo">Enterprise Server Specifics (Dell iDRAC, IBM IMM/XCC, HP iLO)<a hidden class="anchor" aria-hidden="true" href="#enterprise-server-specifics-dell-idrac-ibm-immxcc-hp-ilo">#</a></h3>
+<p>Repurposed enterprise servers bring powerful remote management capabilities – iDRAC (Dell), IMM/XCC (IBM/Lenovo), iLO (HP). These Out-Of-Band (OOB) management interfaces provide deep hardware-level control (power cycling, console access, BIOS config) even if the main OS is down. <strong>Compromising the management interface is equivalent to physical access.</strong> Treat them with extreme caution:</p>
+<ul>
+<li><strong>Network Isolation is Paramount:</strong> Connect the dedicated management port to a <strong>completely separate, physically isolated management network</strong> if feasible. This network should have no internet access or strictly firewalled access.</li>
+<li><strong>If Separate Network Unfeasible:</strong> Place the management interface IP on your <strong>most trusted internal segment</strong> (e.g., Core LAN, <em>never</em> Server Zone or Untrusted Zone). Aggressively firewall access to this IP – only allow connections from your specific admin workstation IP(s). <strong>Never expose these interfaces directly to the internet or less trusted network segments.</strong></li>
+<li><strong>Secure Configuration:</strong>
+<ul>
+<li><strong>Change Default Credentials Immediately:</strong> Default usernames/passwords are public knowledge. Use strong, unique passwords.</li>
+<li><strong>Network Settings:</strong> Assign a static IP. Configure network settings carefully.</li>
+<li><strong>Encryption:</strong> Enable TLS/SSL (HTTPS) for the web interface. Use secure protocols (e.g., SSH instead of Telnet if available).</li>
+<li><strong>Firmware Updates:</strong> Keep the management interface firmware <strong>updated</strong>. These interfaces have their own OS and vulnerabilities. Updates are critical.</li>
+<li><strong>Disable Unused Services:</strong> Disable any services within the management interface you don&rsquo;t need (e.g., SNMP, Telnet, VNC if not used).</li>
+<li><strong>Access Control:</strong> Configure user accounts and permissions tightly (less relevant for single-user home setups, but good practice).</li>
+<li><strong>Logging:</strong> Enable and periodically review logs within the management interface itself.</li>
+</ul>
+</li>
+</ul>
+<h3 id="physical-security">Physical Security<a hidden class="anchor" aria-hidden="true" href="#physical-security">#</a></h3>
+<p>If you&rsquo;re running actual server hardware (not just Pis), consider physical security. Is the hardware in a location where unauthorized individuals could access it directly (e.g., connect a keyboard, USB drive)? Less critical in a typical home, but worth considering if the stakes are high.</p>
+<hr>
+<h2 id="conclusion-vigilance-and-adaptation">Conclusion: Vigilance and Adaptation<a hidden class="anchor" aria-hidden="true" href="#conclusion-vigilance-and-adaptation">#</a></h2>
+<p>Building a secure home network for critical operations isn&rsquo;t a one-time setup; it&rsquo;s an ongoing process. Technology evolves, threats change, vulnerabilities are discovered. Regular updates, log reviews, and periodic configuration audits are essential. Treat your network as a living system that requires continuous monitoring and adaptation. Layer your defenses, minimize your attack surface, and always assume potential compromise.</p>
+<p>Evolve. Excel. Encrypt.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://joseporiolcarne.com/tags/network-security/">Network-Security</a></li>
+      <li><a href="https://joseporiolcarne.com/tags/homelab/">Homelab</a></li>
+      <li><a href="https://joseporiolcarne.com/tags/trading/">Trading</a></li>
+      <li><a href="https://joseporiolcarne.com/tags/servers/">Servers</a></li>
+      <li><a href="https://joseporiolcarne.com/tags/cybersecurity/">Cybersecurity</a></li>
+      <li><a href="https://joseporiolcarne.com/tags/networking/">Networking</a></li>
+      <li><a href="https://joseporiolcarne.com/tags/router/">Router</a></li>
+      <li><a href="https://joseporiolcarne.com/tags/hardening/">Hardening</a></li>
+      <li><a href="https://joseporiolcarne.com/tags/ubuntu/">Ubuntu</a></li>
+      <li><a href="https://joseporiolcarne.com/tags/dell/">Dell</a></li>
+      <li><a href="https://joseporiolcarne.com/tags/ibm/">Ibm</a></li>
+      <li><a href="https://joseporiolcarne.com/tags/raspberry-pi/">Raspberry-Pi</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://joseporiolcarne.com/">Josep Oriol Carné - Developer &amp; Algorithmic Trader</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
