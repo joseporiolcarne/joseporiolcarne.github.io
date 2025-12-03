@@ -1,0 +1,29 @@
+# Hugo build output
+public/
+resources/_gen/
+
+# Hugo lock file
+.hugo_build.lock
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor directories
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Python virtual environment
+venv/
+.venv/
+__pycache__/
+
+# AI assistant caches
+.aider*/
+
+# Environment files
+.env
+.env.local
