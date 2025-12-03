@@ -56,3 +56,32 @@ When creating or editing blog posts, follow these SEO and readability guidelines
 - Ensure the reading level is suitable for a general audience
 - Use clear headings and subheadings for better readability
 - Choose tags that accurately reflect the post's content
+
+## Image Style Guide
+
+**Style:**
+- Technical minimalism
+- Dark/neutral palette
+- Clean lines, vector/diagram look
+- High contrast, no clutter
+
+**Use for:**
+- Diagrams, architectures, workflows
+- Charts and data visuals
+- Code or dashboard screenshots
+- Concept illustrations (trading, AI, infra)
+
+**Avoid:**
+- Stock photos
+- 3D people, office images
+- Busy backgrounds
+- Cartoon/playful styles
+
+
+```
+
+### Reusable Image Generation Prompt
+
+```
+Create a wide 16:9 technical–minimalist illustration about {TOPIC}, clean vector style, neutral palette, high contrast, thin geometric lines, spacious layout, no stock elements, no people, no clutter. Focus on horizontal composition with clear left-to-right information flow. Suitable for a modern developer blog.
+```
