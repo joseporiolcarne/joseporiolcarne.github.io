@@ -7,7 +7,7 @@ tags: ["investing", "cognitive-bias", "trading", "decision-making", "finance", "
 showToc: true
 TocOpen: true
 cover:
-    image: "image.jpg"
+    image: "images/survivorship-bias.png"
     alt: "Survivorship Bias"
     caption: "Survivorship Bias"
     relative: true

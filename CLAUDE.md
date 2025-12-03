@@ -38,19 +38,13 @@ content/posts/my-post/
 └── images/           # Post-specific images (optional)
 ```
 
-## Publishing to GitHub Pages
+## Deployment
 
+Site deploys automatically via GitHub Actions when pushing to `main`. The workflow (`.github/workflows/`) builds with Hugo and deploys to GitHub Pages.
+
+Manual build for testing:
 ```bash
-# 1. Build the site
-hugo
-
-# 2. Copy built files from public/ to root (for GitHub Pages)
-cp -r public/* .
-
-# 3. Commit and push
-git add .
-git commit -m "Publish: brief description"
-git push origin main
+hugo --minify
 ```
 
 ## Blog Post Guidelines

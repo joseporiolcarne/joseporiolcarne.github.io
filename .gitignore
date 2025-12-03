@@ -1,9 +1,17 @@
 # Hugo build output
 public/
-resources/_gen/
-
-# Hugo lock file
+resources/
 .hugo_build.lock
+
+# Generated files in root (GitHub Pages artifacts)
+/*.html
+/*.xml
+/posts/
+/tags/
+/categories/
+/page/
+/about/
+/assets/
 
 # OS files
 .DS_Store
@@ -23,6 +31,7 @@ __pycache__/
 
 # AI assistant caches
 .aider*/
+.claude/
 
 # Environment files
 .env
