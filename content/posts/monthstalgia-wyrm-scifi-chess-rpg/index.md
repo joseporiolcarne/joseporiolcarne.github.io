@@ -1,7 +1,6 @@
 +++
 title = 'Monthstalgia #1: Wyrm - The Book I Refuse to Reread'
 date = 2025-07-02
-draft = true
 description = 'A monthly dive into geeky memories. First up: Wyrm, a 90s sci-fi novel blending computers, chess, and tabletop RPGs that I loved as a teenager—and dare not revisit.'
 tags = ['monthstalgia', 'books', 'scifi', 'nostalgia']
 +++

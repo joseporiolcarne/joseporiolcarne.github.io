@@ -1,7 +1,6 @@
 +++
 title = 'The Martingale: Mathematical Origins and the Inevitability of Ruin'
 date = 2025-01-09
-draft = true
 description = 'Explore the mathematical origins of martingales, from 18th-century gambling strategy to modern probability theory, and why the system guarantees ruin.'
 tags = ['algorithmic-trading', 'mathematics', 'probability', 'risk-management']
 +++

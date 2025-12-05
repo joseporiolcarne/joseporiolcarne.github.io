@@ -1,7 +1,6 @@
 +++
 title = 'Monthstalgia #2: Lands of Lore - Three Heroes, Same Castle, Zero Endings'
 date = 2025-06-01T11:16:35+01:00
-draft = true
 description = 'A nostalgic look at Lands of Lore: The Throne of Chaos, the RPG I played three times with different characters and never finished once.'
 tags = ['monthstalgia', 'games', 'rpg', 'retro-gaming']
 +++

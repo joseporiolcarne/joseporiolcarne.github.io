@@ -1,7 +1,6 @@
 +++
 title = 'The Red Queen Effect: Running as Fast as You Can Just to Stay in Place'
 date = 2025-12-04T18:26:58+01:00
-draft = true
 description = 'The scientific origins and IT applications of the Red Queen hypothesis: from Van Valen 1973 to modern software development and cybersecurity.'
 tags = ['evolution', 'software-development', 'cybersecurity', 'tech-debt']
 +++
