@@ -6,11 +6,6 @@ description: "A pragmatic guide to designing and securing a home network for hig
 tags: ["network-security", "homelab", "trading", "servers", "cybersecurity", "networking", "router", "hardening", "ubuntu", "dell", "ibm", "raspberry-pi"]
 showToc: true
 TocOpen: true
-cover:
-    image: "image.jpg"
-    alt: "Home Network Bunker"
-    caption: "Home Network Bunker"
-    relative: true #
 ---
 
 
