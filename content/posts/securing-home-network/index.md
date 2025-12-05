@@ -11,10 +11,9 @@ TocOpen: true
 
 ## Introduction: Shielding Critical Infrastructure
 
-Running 24/7 operations from a home base – whether it's autonomous trading algorithms or personal management applications – demands more than consumer-grade network hygiene. It requires architecting for resilience and security, treating your home network less like a casual access point and more like a personal data center. Every component, from the router gateway to the server OS, is part of the attack surface and a potential failure point.
+Running 24/7 operations from a home base – whether it's autonomous trading algorithms or personal management applications – demands more than consumer-grade network hygiene. 
 
-This isn't about theoretical perfection; it's about pragmatic defense-in-depth. We'll cover segmenting your network to contain threats, hardening the perimeter (your router), and securing the endpoints (your servers – be they Raspberry Pis, standard PCs running Ubuntu, or even renterprise gear like Dell or IBM servers you might have... acquired). The goal is maximizing uptime and integrity while minimizing exposure. Simplicity is a virtue, but not at the cost of security.
-
+We'll cover segmenting your network to contain threats, hardening the perimeter (your router), and securing the endpoints (your servers – be they Raspberry Pis, standard PCs running Ubuntu, or even renterprise gear like Dell or IBM servers you might have... acquired). The goal is maximizing uptime and integrity while minimizing exposure (and money expenditure). 
 ---
 
 ## Network Architecture: Segmentation is Non-Negotiable

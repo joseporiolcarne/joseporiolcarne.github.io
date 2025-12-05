@@ -6,18 +6,13 @@ description: "Discover how survivorship bias—a cognitive trap born from WWII b
 tags: ["investing", "cognitive-bias", "trading", "decision-making", "finance", "psychology", "startups"]
 showToc: true
 TocOpen: true
-cover:
-    image: "images/survivorship-bias.png"
-    alt: "Survivorship Bias"
-    caption: "Survivorship Bias"
-    relative: true
 ---
 
 
 
 # How Survivorship Bias Is Costing You Money (And You Don't Even Know It)
 
-**Meta Description:** Discover how survivorship bias—a cognitive trap born from WWII bomber analysis—distorts investment strategies, startup success rates, and trading decisions. Learn to see what's missing.
+Discover how survivorship bias—a cognitive trap born from WWII bomber analysis—distorts investment strategies, startup success rates, and trading decisions. Learn to see what's missing.
 
 ---
 
