@@ -10,6 +10,11 @@ theme = "PaperMod"
   author = "Josep Oriol Carné"
   description = "A blog on Evolution, Algorithmic Trading and Cybersecurity."
   showReadingTime = true
+
+[[params.socialIcons]]
+  name = "github"
+  url = "https://github.com/joseporiolcarne"
+  title = "GitHub"
   # Suggest a color palette with cool/futuristic tones or neutral tech shades
   # Use PaperMod's color customization features
   themeColor = "auto"   # "light", "dark", or "auto"
