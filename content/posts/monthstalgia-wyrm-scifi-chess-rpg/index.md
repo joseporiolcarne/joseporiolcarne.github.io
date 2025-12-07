@@ -11,6 +11,8 @@ The catch? These are memories, not reviews. Some of these things I haven't touch
 
 ## Wyrm (1998) by Mark Fabi
 
+![Wyrm book cover](images/portada.jpg)
+
 There's a specific category of books from your formative years: the ones you loved so intensely that you're now terrified to reread them.
 
 *Wyrm* is one of those for me.
