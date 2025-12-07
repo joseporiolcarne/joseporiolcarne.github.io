@@ -35,3 +35,7 @@ theme = "PaperMod"
     name = "Blog"
     url = "/posts"
     weight = 3
+
+[services]
+  [services.googleAnalytics]
+    ID = "G-DQ8LLMPBBF"
