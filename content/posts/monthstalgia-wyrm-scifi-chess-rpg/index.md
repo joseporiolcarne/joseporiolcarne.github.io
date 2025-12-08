@@ -41,7 +41,7 @@ If I reread *Wyrm* today, one of two things happens:
 
 I choose to keep the memory.
 
-This isn't cowardice. It's curation. Some things are better preserved in amber than examined under fluorescent light.
+Some things are better preserved in amber than examined under fluorescent light. And this doesn't just apply to books—it's true for places you've visited that felt magical at the time, food that tasted perfect in a specific moment, or even personal interactions that meant something precisely because of who you were then.
 
 ## Should You Read It?
 
